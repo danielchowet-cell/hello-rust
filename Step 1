@@ -1,0 +1,9 @@
+from Bio import SeqIO
+
+# Load the sequence file
+record = SeqIO.read("unknown_sequence.fasta", "fasta")
+
+print("Sequence ID:", record.id)
+print("Description:", record.description)
+print("Sequence Length:", len(record.seq))
+print("First 50 bases:", record.seq[:50])
