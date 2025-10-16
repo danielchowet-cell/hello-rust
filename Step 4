@@ -1,0 +1,56 @@
+from Bio import SeqIO
+from Bio.Blast import NCBIWWW, NCBIXML
+import os, time
+
+FASTA = "unknown_sequence.fasta"
+EMAIL = os.getenv("NCBI_EMAIL", "you@school.edu")
+
+def wiki_link(hit_def: str):
+    toks = hit_def.split()
+    if len(toks) >= 2:
+        return f"https://en.wikipedia.org/wiki/{toks[0]}_{toks[1]}"
+
+def run_qblast(seq: str, short: bool):
+    return NCBIWWW.qblast(
+        program="blastn",
+        database="nt",
+        sequence=seq,
+        expect=10,         # relaxed (you earlier used 1e-5; we loosened to get hits)
+        hitlist_size=10,
+        megablast=False,   # more sensitive for shorter/varied fragments
+        format_type="XML",
+    )
+
+def main():
+    rec = SeqIO.read(FASTA, "fasta")
+    seq = str(rec.seq)
+    short = (len(seq) < 100)
+    print(f"[INFO] Running BLAST for {rec.id} | len={len(seq)} | short={short}")
+
+    # polite retry if NCBI throttles/errs
+    for attempt in range(1, 4):
+        try:
+            handle = run_qblast(seq, short)
+            break
+        except Exception as e:
+            wait = 10 * attempt
+            print(f"[WARN] {e} — retry {attempt}/3 in {wait}s")
+            time.sleep(wait)
+    else:
+        raise SystemExit("[ERROR] NCBI unreachable after retries.")
+
+    print("[INFO] Parsing results...")
+    br = NCBIXML.read(handle)
+
+    if not br.alignments:
+        print("No hits found.")
+        return
+
+    print(f"Total hits: {len(br.alignments)}\nTop results:")
+    for i, aln in enumerate(br.alignments[:5], 1):
+        hsp = aln.hsps[0]
+        ident = 100.0 * hsp.identities / hsp.align_length
+        print(f"{i}. {aln.hit_def}")
+        print(f"   bits={hsp.bits:.1f}  e={hsp.expect:.2e}  identity={ident:.1f}%  len={hsp.align_length}")
+        link = wiki_link(aln.hit_def)
+        if link: print(f"   Wikipedia: {link}")
