@@ -15,7 +15,7 @@ def run_qblast(seq: str, short: bool):
         program="blastn",
         database="nt",
         sequence=seq,
-        expect=10,         # relaxed (you earlier used 1e-5; we loosened to get hits)
+        expect=10,         # relaxed
         hitlist_size=10,
         megablast=False,   # more sensitive for shorter/varied fragments
         format_type="XML",
