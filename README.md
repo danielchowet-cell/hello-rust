@@ -1,1 +1,1 @@
-Animal Finders made by: Daniel, Anushka, Lasya
+Animal Finders made by: Daniel Cho, Anushka Shankar, Lasya Machineni
