@@ -4,8 +4,8 @@ without going through the multiple steps it takes to BLAST and search it,
 there is not a tool that readily does that...yet!
 
 Our goal for this project was to create a easy and streamlined way to find 
-information about an animal using their nucleotide seuqence. Simply paste in your sequence, click on the link(s)
-containing the top hits, and read up on the information you need!
+information about an animal using their DNA or protein seuqence. Simply paste in your sequence or input your fasta file, 
+click on the link containing the top hit, and read up on the information you need!
 
 This is a useful tool if you want to research on organisms, espically if you are looking at multiple organisms. It reduces
 tab clutter, and the amount the steps that it from BLAST-ing it, looking at the top hits, then search it on the web, which makes
