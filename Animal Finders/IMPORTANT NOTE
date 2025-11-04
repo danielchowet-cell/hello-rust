@@ -1,3 +1,5 @@
 Ensure biopython is installed for seamless usage
 
 Clear cache if not returing name or link: rm -f results.xml
+
+After running the script, you may get a wall of text after the results, that text can be ignored
