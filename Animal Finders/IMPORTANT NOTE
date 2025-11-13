@@ -1,4 +1,5 @@
 Ensure biopython is installed for seamless usage
+Ensure requests is installed
 
 Clear cache if not returing name or link: rm -f results.xml
 
