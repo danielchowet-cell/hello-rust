@@ -16,9 +16,9 @@ import sys
 import subprocess
 import importlib
 
-# --------------------------
+
 # Auto-install dependencies
-# --------------------------
+
 
 def ensure_package(pkg_name):
     """Ensure a package is installed, install it if not."""
@@ -38,9 +38,9 @@ import urllib.parse
 import requests
 
 
-# --------------------------
+
 # Utility Functions
-# --------------------------
+
 
 def run_blast(sequence: str, program: str = "blastn", database: str = "nt"):
     """Run BLAST search on NCBI and return parsed XML results."""
@@ -116,9 +116,9 @@ def save_results(filename: str, info: dict):
         print(f"[ERROR] Could not save results to file: {e}")
 
 
-# --------------------------
+
 # Main Function
-# --------------------------
+
 
 def main():
     print("=== 🧬 Animal Finder ===")
