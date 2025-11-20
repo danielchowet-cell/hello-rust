@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 """
-animalfinders.py — Find the top organism match for a DNA/protein sequence via BLAST,
-and return its Wikipedia page link.
-
-Usage:
-    ./animalfinders.py
-
 Requirements:
     - Internet connection (for BLAST query)
     - Python 3
@@ -31,7 +25,7 @@ def ensure_package(pkg_name):
 for package in ["biopython", "requests"]:
     ensure_package(package)
 
-# Now safely import
+# Importing
 from Bio.Blast import NCBIWWW, NCBIXML
 from Bio import SeqIO
 import urllib.parse
