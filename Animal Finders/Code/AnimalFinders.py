@@ -15,7 +15,6 @@ import importlib
 
 
 def ensure_package(pkg_name):
-    """Ensure a package is installed, install it if not."""
     try:
         importlib.import_module(pkg_name)
     except ImportError:
@@ -37,7 +36,7 @@ import requests
 
 
 def run_blast(sequence: str, program: str = "blastn", database: str = "nt"):
-    """Run BLAST search on NCBI and return parsed XML results."""
+
     print(f"[INFO] Running {program.upper()} search... this may take a while.")
     try:
         result_handle = NCBIWWW.qblast(program, database, sequence)
@@ -49,20 +48,20 @@ def run_blast(sequence: str, program: str = "blastn", database: str = "nt"):
 
 
 def calculate_gc(sequence: str) -> float:
-    """Return GC content percentage of a sequence."""
+    
     g = sequence.upper().count("G")
     c = sequence.upper().count("C")
     return round((g + c) / len(sequence) * 100, 2) if len(sequence) > 0 else 0.0
 
 
 def get_sequence_type(sequence: str) -> str:
-    """Guess whether the sequence is DNA or protein."""
+    
     dna_letters = set("ACGTU")
     return "DNA" if set(sequence.upper()) <= dna_letters else "Protein"
 
 
 def clean_hit_name(hit_def: str) -> str:
-    """Extract the most likely scientific name from a BLAST hit description."""
+    
     keywords = [
         "mitochondrion", "chloroplast", "plasmid", "chromosome",
         "complete genome", "genome assembly", "isolate", "strain",
@@ -82,7 +81,7 @@ def clean_hit_name(hit_def: str) -> str:
 
 
 def get_wiki_link(scientific_name: str) -> str:
-    """Return a working Wikipedia link if available, otherwise a Google search."""
+    
     base_url = "https://en.wikipedia.org/wiki/"
     encoded = urllib.parse.quote(scientific_name.replace(" ", "_"))
     wiki_url = base_url + encoded
@@ -99,7 +98,7 @@ def get_wiki_link(scientific_name: str) -> str:
 
 
 def save_results(filename: str, info: dict):
-    """Save the BLAST summary results to a text file."""
+    
     try:
         with open(filename, "w", encoding="utf-8") as f:
             f.write("=== Animal Finder Results ===\n\n")
@@ -115,7 +114,7 @@ def save_results(filename: str, info: dict):
 
 
 def main():
-    print("=== 🧬 Animal Finder ===")
+    print("=== Animal Finder ===")
     print("1) Enter sequence manually")
     print("2) Provide FASTA file path")
     choice = input("Choose input method (1 or 2): ").strip()
@@ -168,7 +167,7 @@ def main():
     }
 
     # Display results
-    print("\n=== 🔎 Results ===")
+    print("\n=== Results ===")
     for key, value in results.items():
         print(f"{key}: {value}")
 
