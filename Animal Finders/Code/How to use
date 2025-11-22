@@ -9,3 +9,4 @@ python3 AnimalFinders.py
 
 
 - The resutls will contain a few statistics, a scientific name, and a link directing you to wikipedia or google
+- Results will also automatically be saved
