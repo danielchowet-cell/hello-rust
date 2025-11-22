@@ -3,6 +3,7 @@
 Requirements:
     - Internet connection (for BLAST query)
     - Python 3
+    - pip package
     - Biopython, Requests (auto-installed if missing)
 """
 
