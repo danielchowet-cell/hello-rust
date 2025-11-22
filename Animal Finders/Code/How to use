@@ -1,0 +1,11 @@
+To run the code use:
+
+Method One:
+chmod +x AnimalFinders.py
+./AnimalFinders.py
+
+Method Two:
+python3 AnimalFinders.py
+
+
+- The resutls will contain a few statistics, a scientific name, and a link directing you to wikipedia or google
